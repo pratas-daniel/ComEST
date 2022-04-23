@@ -14,7 +14,7 @@ public class Prato {
 	private String descricao;
 	private float preco;
 	private float peso;
-	private ArrayList<Opcao> opcoes = new ArrayList<Opcao>();
+	private ArrayList<Opcao> opcoes;
 	
 	public Prato(String nome, String descricao, float preco, float peso, ArrayList<Opcao> opcoes) {
 		this.nome = nome;

@@ -12,12 +12,12 @@ import java.util.List;
 public class Restaurante {
 	private String nome;
 	private String descricao;
-	private ArrayList<String> Pratos = new ArrayList<String>();
+	private ArrayList<Prato> pratos;
 	
-	public Restaurante(String nome, String descricao, ArrayList<String> pratos) {
+	public Restaurante(String nome, String descricao, ArrayList<Prato> pratos) {
 		this.nome = nome;
 		this.descricao = descricao;
-		Pratos = pratos;
+		this.pratos = pratos;
 	}
 
 
