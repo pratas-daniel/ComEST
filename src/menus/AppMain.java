@@ -11,8 +11,10 @@ public class AppMain {
 	 */
 	public static void main( String []args ){
 		ComEST come = new ComEST();
-	 	Restaurante restaurante = new Restaurante("CantinaEST", "Comida caseira, elaborada com um toque de requinte")
-	 	
+	 	Restaurante restaurante = new Restaurante("CantinaEST", "Comida caseira, elaborada com um toque de requinte");
+	 	Prato prato;
+	 	prato = new Prato("Rissois", "Rissois de bacalhau acompanhados de arroz", 2.6f, 300);
+	 	prato.addOpcao(new Opcao("Acompanhado com arroz de tomate", 0.3f));
 	 	/**
 	 	 * Criar aqui os restaurantes/pratos/opções
 		 * Criar aqui os restaurantes/pratos/opções

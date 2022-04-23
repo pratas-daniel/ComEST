@@ -13,10 +13,10 @@ public class Prato {
 	private String nome;
 	private String descricao;
 	private float preco;
-	private float peso;
+	private int peso;
 	private ArrayList<Opcao> opcoes;
 	
-	public Prato(String nome, String descricao, float preco, float peso) {
+	public Prato(String nome, String descricao, float preco, int peso) {
 		this.nome = nome;
 		this.descricao = descricao;
 		this.preco = preco;
@@ -59,7 +59,7 @@ public class Prato {
 		return peso;
 	}
 
-	public void setPeso(float peso) {
+	public void setPeso(int peso) {
 		this.peso = Math.abs(peso);
 	}
 	public void addOpcao (Opcao o) {
