@@ -31,7 +31,7 @@ public class Opcao {
 		this.preco = preco;
 	}
 
-	public float getPeso() {
+	public int getPeso() {
 		return peso;
 	}
 

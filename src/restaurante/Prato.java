@@ -56,7 +56,7 @@ public class Prato {
 		this.preco = Math.abs(preco);
 	}
 
-	public float getPeso() {
+	public int getPeso() {
 		return peso;
 	}
 
@@ -65,5 +65,8 @@ public class Prato {
 	}
 	public void addOpcao (Opcao o) {
 		opcoes.add(o);
+	}
+	public ArrayList<Opcao> getOpcoes() {
+		return opcoes;
 	}
 }
