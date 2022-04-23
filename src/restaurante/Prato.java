@@ -21,6 +21,7 @@ public class Prato {
 		this.descricao = descricao;
 		this.preco = preco;
 		this.peso = peso;
+		opcoes.clear();
 	}
 
 	/** Indica se a opção indicada é válida para este prato

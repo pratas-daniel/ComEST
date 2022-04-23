@@ -14,7 +14,11 @@ public class AppMain {
 	 	Restaurante restaurante = new Restaurante("CantinaEST", "Comida caseira, elaborada com um toque de requinte");
 	 	Prato prato;
 	 	prato = new Prato("Rissois", "Rissois de bacalhau acompanhados de arroz", 2.6f, 300);
-	 	prato.addOpcao(new Opcao("Acompanhado com arroz de tomate", 0.3f));
+	 	prato.addOpcao(new Opcao("Acompanhado com arroz de tomate", 0.3f, 20));
+	 	prato.addOpcao(new Opcao("1 Rissol extra", 0.2f, 30));
+	 	prato.addOpcao(new Opcao("2 Rissois extra", 0.4f, 60));
+	 	restaurante.addPrato(prato);
+	 	
 	 	/**
 	 	 * Criar aqui os restaurantes/pratos/opções
 		 * Criar aqui os restaurantes/pratos/opções
