@@ -16,12 +16,11 @@ public class Prato {
 	private float peso;
 	private ArrayList<Opcao> opcoes;
 	
-	public Prato(String nome, String descricao, float preco, float peso, ArrayList<Opcao> opcoes) {
+	public Prato(String nome, String descricao, float preco, float peso) {
 		this.nome = nome;
 		this.descricao = descricao;
 		this.preco = preco;
 		this.peso = peso;
-		this.opcoes = opcoes;
 	}
 
 	/** Indica se a opção indicada é válida para este prato
@@ -54,7 +53,6 @@ public class Prato {
 
 	public void setPreco(float preco) {
 		this.preco = Math.abs(preco);
-		
 	}
 
 	public float getPeso() {
@@ -64,5 +62,7 @@ public class Prato {
 	public void setPeso(float peso) {
 		this.peso = Math.abs(peso);
 	}
-
+	public void addOpcao (Opcao o) {
+		opcoes.add(o);
+	}
 }
