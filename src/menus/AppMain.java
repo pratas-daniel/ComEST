@@ -11,32 +11,33 @@ public class AppMain {
 	 */
 	public static void main( String []args ){
 		ComEST come = new ComEST();
-	 	Restaurante restaurante = new Restaurante("CantinaEST", "Comida caseira, elaborada com um toque de requinte");
-	 	Prato prato;
+		Restaurante restaurante;
+		Prato prato;
+		// Restaurante CantinaEST
+				// Comida caseira, elaborada com um toque de requinte.
+				// Pratos:
+				//    Rissois     descrição: 3 Rissois de bacalhau acompanhados de arroz   preço base: 2.6€  peso base: 300g
+				//       opção 1: Acompanhado com arroz de tomate  custo: 0.3€  peso: 20g
+				//       opção 2: 1 Rissol extra  0.2€  30g
+				//       opção 3: 2 Rissois extra  0.4€  60g
+				//    Peixe à Brás  desc:Peixe à Brás    2.6€   400g 
+				//       opção 1: 5 Azeitonas   0.2€  30g
+				//       opção 2: 8 Azeitonas   0.3€  50g
+				//       opção 3: Queijo gratinado  0.4€  100g
+				//    Frango assado   desc: Perna de frango assado com arroz     2.6€    450g 
+				//       opção 1: Pickles   0.2€   40g
+				//       opção 2: Picante   0.0€   5g
+	 	restaurante = new Restaurante("CantinaEST", "Comida caseira, elaborada com um toque de requinte");
 	 	prato = new Prato("Rissois", "Rissois de bacalhau acompanhados de arroz", 2.6f, 300);
 	 	prato.addOpcao(new Opcao("Acompanhado com arroz de tomate", 0.3f, 20));
 	 	prato.addOpcao(new Opcao("1 Rissol extra", 0.2f, 30));
 	 	prato.addOpcao(new Opcao("2 Rissois extra", 0.4f, 60));
 	 	restaurante.addPrato(prato);
-	 	
-	 	/**
-	 	 * Criar aqui os restaurantes/pratos/opções
-		 * Criar aqui os restaurantes/pratos/opções
-		 */
-		// Restaurante CantinaEST
-		// Comida caseira, elaborada com um toque de requinte.
-		// Pratos:
-		//    Rissois     descrição: 3 Rissois de bacalhau acompanhados de arroz   preço base: 2.6€  peso base: 300g
-		//       opção 1: Acompanhado com arroz de tomate  custo: 0.3€  peso: 20g
-		//       opção 2: 1 Rissol extra  0.2€  30g
-		//       opção 3: 2 Rissois extra  0.4€  60g
-		//    Peixe à Brás  desc:Peixe à Brás    2.6€   400g 
-		//       opção 1: 5 Azeitonas   0.2€  30g
-		//       opção 2: 8 Azeitonas   0.3€  50g
-		//       opção 3: Queijo gratinado  0.4€  100g
-		//    Frango assado   desc: Perna de frango assado com arroz     2.6€    450g 
-		//       opção 1: Pickles   0.2€   40g
-		//       opção 2: Picante   0.0€   5g
+	 	prato = new Prato("Peixe à Brás", "Pexixe à Brás", 2.6f, 400);
+	 	prato.addOpcao(new Opcao("Azeitonas", 0.2f, 30));
+	 	prato.addOpcao(new Opcao("1 Rissol extra", 0.2f, 30));
+	 	prato.addOpcao(new Opcao("2 Rissois extra", 0.4f, 60));
+	 	restaurante.addPrato(prato);
 		
 		// Restaurante SoSushi
 		// Comida japonesa de qualidade.

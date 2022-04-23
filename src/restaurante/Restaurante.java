@@ -17,6 +17,7 @@ public class Restaurante {
 	public Restaurante(String nome, String descricao) {
 		this.nome = nome;
 		this.descricao = descricao;
+		pratos.clear();
 	}
 
 
