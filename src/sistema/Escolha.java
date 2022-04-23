@@ -17,6 +17,14 @@ public class Escolha {
 		this.opcoes = opcoes;
 	}
 
+	public Prato getPrato() {
+		return prato;
+	}
+
+	public ArrayList<Opcao> getEscolhas () {
+		return opcoes;
+	}
+	
 	/** Retorna o peso total da escolha, ou seja,
 	 * o peso do prato mais o peso de cada uma das opções selecionadas.
 	 * @return o peso total da escolha
