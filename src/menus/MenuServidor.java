@@ -76,13 +76,14 @@ public class MenuServidor {
 			String nomeRest = p.getRestaurante().getNome();
 			int peso = p.getPesoTotal();
 			float preco = p.getPrecoTotal();
-			float taxa;
+			float taxa = 0;
 			if (peso > 0 && peso < 1500)
 				taxa = 2.5f;
 			else if (peso < 3000)
 				taxa = 4.5f;
 			else if (peso < 4000)
 				taxa = 5.0f;
+			// TODO acabar if
 			consola.println( String.format("%6s - %-30s  %4dg  %6.2fe  %6.2f€",
 					codigo, nomeRest,  peso,
 					preco, taxa) );
