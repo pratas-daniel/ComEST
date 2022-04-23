@@ -1,7 +1,7 @@
 package menus;
 
-import java.util.HashMap;
-
+import java.util.ArrayList;
+import restaurante.*;
 import sistema.ComEST;
 
 public class AppMain {
@@ -11,16 +11,8 @@ public class AppMain {
 	 */
 	public static void main( String []args ){
 		ComEST come = new ComEST();
-		
-		 HashMap<String, String> restaurantes = new HashMap<String, String>();
-		 HashMap<String, String> pratos = new HashMap<String, String>();
-		 HashMap<String, String> opcoes = new HashMap<String, String>();
-	
-		 	restaurantes.put("1", "CantinaEST");
-	 		restaurantes.put("2", "SoSushi");
-	 		restaurantes.put("3", "Churrasqueira da EST");
-	 		
-	 		
+	 	Restaurante restaurante = new Restaurante("CantinaEST", "Comida caseira, elaborada com um toque de requinte")
+	 	
 	 	/**
 	 	 * Criar aqui os restaurantes/pratos/opções
 		 * Criar aqui os restaurantes/pratos/opções

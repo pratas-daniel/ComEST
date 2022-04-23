@@ -14,10 +14,9 @@ public class Restaurante {
 	private String descricao;
 	private ArrayList<Prato> pratos;
 	
-	public Restaurante(String nome, String descricao, ArrayList<Prato> pratos) {
+	public Restaurante(String nome, String descricao) {
 		this.nome = nome;
 		this.descricao = descricao;
-		this.pratos = pratos;
 	}
 
 
@@ -27,6 +26,10 @@ public class Restaurante {
 	 */
 	public boolean temPrato( Prato p ) {
 		return true;
+	}
+	
+	public void addPrato(Prato p) {
+		pratos.add(p);
 	}
 
 
