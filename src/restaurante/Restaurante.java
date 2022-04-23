@@ -52,4 +52,8 @@ public class Restaurante {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
+	public ArrayList<Prato> getPratos() {
+		return pratos;
+	}
 }
