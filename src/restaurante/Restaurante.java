@@ -12,8 +12,15 @@ import java.util.List;
 public class Restaurante {
 	private String nome;
 	private String descricao;
-	List<String> Pratos = new ArrayList<String>();
+	private ArrayList<String> Pratos = new ArrayList<String>();
 	
+	public Restaurante(String nome, String descricao, ArrayList<String> pratos) {
+		this.nome = nome;
+		this.descricao = descricao;
+		Pratos = pratos;
+	}
+
+
 	/** indica se um dado prato pertence a este restaurante
 	 * @param p o prato a verificar
 	 * @return true, se o prato faz parte da lista do restaurante

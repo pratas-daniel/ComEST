@@ -8,7 +8,7 @@ public class Opcao {
 	private String nome;
 	private float preco;
 	private float peso;
-	
+
 	public Opcao(String nome, float preco, float peso) {
 		this.nome = nome;
 		this.preco = preco;

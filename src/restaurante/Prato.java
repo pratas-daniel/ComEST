@@ -16,6 +16,14 @@ public class Prato {
 	private float peso;
 	private ArrayList<Opcao> opcoes = new ArrayList<Opcao>();
 	
+	public Prato(String nome, String descricao, float preco, float peso, ArrayList<Opcao> opcoes) {
+		this.nome = nome;
+		this.descricao = descricao;
+		this.preco = preco;
+		this.peso = peso;
+		this.opcoes = opcoes;
+	}
+
 	/** Indica se a opção indicada é válida para este prato
 	 * @param o a opção a verificar
 	 * @return true, se a opção é válida para o prato.
