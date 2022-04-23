@@ -1,7 +1,8 @@
 package restaurante;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import sistema.Pedido;
 
 /** Representa um restaurante
  * Cada restaurante deve ter um nome e uma descrição. A descrição deve ser uma apresentação
@@ -12,12 +13,14 @@ import java.util.List;
 public class Restaurante {
 	private String nome;
 	private String descricao;
-	private ArrayList<Prato> pratos = new ArrayList<Prato>();
+	private ArrayList<Prato> pratos;
+	private ArrayList<Pedido> pedidos;
 	
 	public Restaurante(String nome, String descricao) {
 		this.nome = nome;
 		this.descricao = descricao;
-		pratos.clear();
+		pedidos = new ArrayList<Pedido>();
+		pratos = new ArrayList<Prato>();
 	}
 
 

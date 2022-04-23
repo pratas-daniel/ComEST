@@ -21,7 +21,7 @@ public class Prato {
 		this.descricao = descricao;
 		this.preco = preco;
 		this.peso = peso;
-		opcoes.clear();
+		opcoes = new ArrayList<Opcao>();;
 	}
 
 	/** Indica se a opção indicada é válida para este prato
