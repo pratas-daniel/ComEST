@@ -12,7 +12,7 @@ import java.util.List;
 public class Restaurante {
 	private String nome;
 	private String descricao;
-	private ArrayList<Prato> pratos;
+	private ArrayList<Prato> pratos = new ArrayList<Prato>();
 	
 	public Restaurante(String nome, String descricao) {
 		this.nome = nome;

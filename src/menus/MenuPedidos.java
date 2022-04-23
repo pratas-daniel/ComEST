@@ -1,5 +1,6 @@
 package menus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import consola.SConsola;
@@ -73,7 +74,7 @@ public class MenuPedidos {
 			// TODO apresentar a informação pedida
 			float preco = 2.5f;
 			float taxaEntrega = 2.5f;
-			float pesoTotal = 1000;
+			int pesoTotal = 1000;
 			float precoTotal = 5.0f;
 			consola.println( String.format("\nCusto pedido:  %6.2f€", preco ) );
 			consola.println( String.format(  "Custo entrega: %6.2f€  por  %4dg", taxaEntrega, pesoTotal ) );
@@ -127,13 +128,14 @@ public class MenuPedidos {
 	/** apresenta, na consola, uma lista de pratos
 	 * @param pratos a lista de pratos a apresentar
 	 */
-	private void printPratos(List<Prato> pratos) {
+	private void printPratos(ArrayList<Prato> pratos) {
 		if( pratos.size() == 0 )
 			consola.println( "<Sem pratos>" );
 		// TODO para cada prato imprimir a informação solicitada
 		for( int i = 0; i < pratos.size(); i++ ) {
-			String nome = "nome prato";
-			float preco = 2.5f;
+			Prato prato = pratos.get(i);
+			String nome = prato.getNome();
+			float preco = prato.getPreco();
 			consola.println( String.format("%2d:%-40s %6.2f€", i+1, nome, preco ) );
 		}
 	}
