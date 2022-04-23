@@ -64,8 +64,7 @@ public class MenuPedidos {
 		int pidx = 0;
 		do {
 			consola.clear();
-			// TODO atribuir os valores adequados às variáveis 
-			String nomeRest = "nome do restaurante";
+			String nomeRest = r.getNome();
 			consola.println( nomeRest + "\n\nPratos já pedidos" );
 			
 			// TODO passar aqui a lista de escolhas 
@@ -112,7 +111,7 @@ public class MenuPedidos {
 	/** apresenta, na consola, uma lista de escolhas
 	 * @param escolhas a lista de escolhas a apresentar
 	 */
-	private void printEscolhas(List<Escolha> escolhas) {
+	private void printEscolhas(ArrayList<Escolha> escolhas) {
 		if( escolhas.size() == 0 )
 			consola.println( "<Ainda sem pratos no pedido>" );
 		// TODO para cada escolha imprimir
@@ -131,7 +130,6 @@ public class MenuPedidos {
 	private void printPratos(ArrayList<Prato> pratos) {
 		if( pratos.size() == 0 )
 			consola.println( "<Sem pratos>" );
-		// TODO para cada prato imprimir a informação solicitada
 		for( int i = 0; i < pratos.size(); i++ ) {
 			Prato prato = pratos.get(i);
 			String nome = prato.getNome();
@@ -144,31 +142,28 @@ public class MenuPedidos {
 	 * @return o restaurante selecionado ou null, caso não haja seleção
 	 */
 	private Restaurante escolherRestaurante() {
-		// TODO listar os restaurantes do sistema  
-		for( int i = 0; i < 1; i++  ) {
-			String nomeRest = "Nome restaurante";
+		ArrayList<Restaurante> restaurantes = server.getRestaurantes(); 
+		for( int i = 0; i < restaurantes.size(); i++  ) {
+			String nomeRest = restaurantes.get(i).getNome();
 			consola.println( (i+1) + ": " + nomeRest );
 		}
 		consola.print( "\nRestaurante: " );
 		int ridx = consola.readInt() - 1;
-		// TODO ver se o escolhido é válido
-		if( Math.abs( 2 ) == -2 ) {
+		if(ridx < 0 || ridx >= restaurantes.size()) {
 			consola.println( "Restaurante inválido!" );
 			consola.readLine();
 			return null;
 		}		
-	
-		// TODO selecionar o restaurante escolhido
-		String nome = "Nome restaurante escolhido";
-		String desc = "Descrição do restaurante ewscolhido";
+		Restaurante restaurante = restaurantes.get(ridx);
+
+		String nome = restaurante.getNome();
+		String desc = restaurante.getDescricao();
 		consola.println( "\n\n" + nome + "\n" + desc + "\n\nOferta:");
-		// TODO apresentar os pratos do restaurante
-		printPratos( null );
+		printPratos( restaurante.getPratos() );
 		
-		// TODO se confirmar é preciso retornar o restaurante
 		consola.println( "Escolher o restaurante? (0: confirmar)" );
 		int sim = consola.readInt();
-		return sim == 0? null: null;
+		return sim == 0? restaurante: null;
 	}
 	
 	/** Apresenta as opções do prato selecionado e pede para confirmar o prato como 
@@ -179,13 +174,13 @@ public class MenuPedidos {
 	private void escolherOpcoesPrato(Pedido pedido, Prato prato) {
 		// TODO usar este array booleano (que deve ter o mesmo tamanho da lista de opções)
 		//      para saber quais as opções que estão selecionadas
-		int numOpcoes = 1;
+		int numOpcoes = prato.getOpcoes().size();
 		boolean select[] = new boolean[ numOpcoes ];
 		
 		// TODO apresentar info do prato
-		String nomePrato = "Nome do prato";
-		String descPrato = "Descrição do prato";
-		float precoPrato = 2.5f;
+		String nomePrato = prato.getNome();
+		String descPrato = prato.getDescricao();
+		float precoPrato = prato.getPreco();
 		String infoPrato = nomePrato + "\n" + descPrato +
 				           "\nPreço base: "+ String.format("%6.2f€",precoPrato) + "\n\n" +
 		                   "Selecione (desselecione) as opções pretendidas\n" +
@@ -195,17 +190,17 @@ public class MenuPedidos {
 		do {
 			consola.clear();
 			consola.println( infoPrato );
-			float precoTotal = 2.8f;
+			float precoTotal = prato.getPreco();
 			consola.println( String.format("Custo: %6.2f €", precoTotal ) );
 			for( int i = 0; i < numOpcoes; i++  ) {
 				consola.print( select[i]? "(o) ": "( ) " );
-				String nomeOpcao = "Uma opção";
-				float custoOpcao = 0.3f;
+				String nomeOpcao = prato.getOpcoes().get(i).getNome();
+				float custoOpcao = prato.getOpcoes().get(i).getPreco();
 				consola.println( String.format("%2d: %-35s %6.2f€", i+1, nomeOpcao, custoOpcao ) );
 			}
 			consola.println( "Opção: ");
 			oidx = consola.readInt();
-			if( oidx > 0 && oidx <= numOpcoes ) {
+			if( oidx < 1 && oidx > numOpcoes ) {
 				int idx = oidx-1;
 				select[idx] = !select[idx];
 				if( select[idx] )

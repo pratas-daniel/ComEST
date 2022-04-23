@@ -11,7 +11,19 @@ import restaurante.*;
 public class ComEST {
 	 private ArrayList<Restaurante> restaurantes;
 	 private ArrayList<Pedido> pedidos;
-	 private Escolha escolha;
+	 
+	 public ComEST() {
+		 restaurantes = new ArrayList<Restaurante>();
+		 pedidos = new ArrayList<Pedido>();
+	 }
+	 
+	 public ArrayList<Restaurante> getRestaurantes() {
+		return restaurantes;
+	 }
+
+	 public ArrayList<Pedido> getPedidos() {
+		return pedidos;
+	 }
 	 
 	 public void addRestaurante(Restaurante r) {
 		 restaurantes.add(r);

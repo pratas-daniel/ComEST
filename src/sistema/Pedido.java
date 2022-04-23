@@ -13,12 +13,44 @@ public class Pedido {
 	private String id;
 	private Restaurante restaurante;
 	private ArrayList<Escolha> escolhas;
+	private int pesoTotal;
+	private float precoTotal;
 
 
-	public Pedido(String id, Restaurante restaurante, ArrayList<Escolha> escolhas) {
+	public Pedido(String id, Restaurante restaurante) {
 		this.id = id;
 		this.restaurante = restaurante;
-		this.escolhas = escolhas;
+		this.escolhas = new ArrayList<Escolha>();
+		pesoTotal = 0;
+		precoTotal = 0;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+
+	public Restaurante getRestaurante() {
+		return restaurante;
+	}
+
+
+	public ArrayList<Escolha> getEscolhas() {
+		return escolhas;
+	}
+
+	public int getPesoTotal() {
+		return pesoTotal;
+	}
+
+	public float getPrecoTotal() {
+		return precoTotal;
+	}
+
+	public void addEscolha (Escolha e) {
+		escolhas.add(e);
+		pesoTotal += e.getPeso();
+		precoTotal += e.getPreco();
 	}
 
 
@@ -26,6 +58,9 @@ public class Pedido {
 	 * @return true, se o pedido não tiver qualquer escolha
 	 */
 	public boolean estaVazio() {
-		return false;
+		if (escolhas.isEmpty())
+			return true;
+		else
+			return false;
 	}
 }

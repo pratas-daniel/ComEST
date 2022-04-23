@@ -43,6 +43,7 @@ public class AppMain {
 	 	prato.addOpcao(new Opcao("Pickles", 0.2f, 40));
 	 	prato.addOpcao(new Opcao("Picante", 0.0f, 5));
 	 	restaurante.addPrato(prato);
+	 	come.addRestaurante(restaurante);
 		
 		// Restaurante SoSushi
 		// Comida japonesa de qualidade.
@@ -76,6 +77,7 @@ public class AppMain {
 	 	prato.addOpcao(new Opcao("Wasabi", 0.3f, 5));
 	 	prato.addOpcao(new Opcao("Soja", 0.3f, 5));
 	 	restaurante.addPrato(prato);
+	 	come.addRestaurante(restaurante);
 
 		// Restaurante Churrasqueira da EST
 		// Churrascos na brasa (de carvão) como nunca comeu
@@ -111,6 +113,7 @@ public class AppMain {
 	 	prato.addOpcao(new Opcao("Arroz", 1.3f, 200));
 	 	prato.addOpcao(new Opcao("Feijão preto", 2.2f, 300));
 	 	restaurante.addPrato(prato);
+	 	come.addRestaurante(restaurante);
 		
 		// criar o menu principal do servidor
 		Thread t1 = new Thread() {

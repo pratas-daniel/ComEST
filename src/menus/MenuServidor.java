@@ -63,8 +63,7 @@ public class MenuServidor {
 	 * 
 	 */
 	private void verTodosPedidos() {
-		// TODO passar os pedidos de todo o sistema
-		verPedidos( null );		
+		verPedidos( server.getPedidos() );		
 	}
 
 	/** Apresenta todos os pedidos presentes na lista
@@ -73,12 +72,17 @@ public class MenuServidor {
 	private void verPedidos( Collection<Pedido> pedidos ) {
 		consola.clear();
 		for( Pedido p : pedidos ) {
-			// TODO preencher a informação corretamente
-			String codigo = "Código do pedido";
-			String nomeRest = "Nome de um restaurante";
-			int peso = 500;
-			float preco = 2.3f;
-			float taxa = 2.5f;
+			String codigo = p.getId();
+			String nomeRest = p.getRestaurante().getNome();
+			int peso = p.getPesoTotal();
+			float preco = p.getPrecoTotal();
+			float taxa;
+			if (peso > 0 && peso < 1500)
+				taxa = 2.5f;
+			else if (peso < 3000)
+				taxa = 4.5f;
+			else if (peso < 4000)
+				taxa = 5.0f;
 			consola.println( String.format("%6s - %-30s  %4dg  %6.2fe  %6.2f€",
 					codigo, nomeRest,  peso,
 					preco, taxa) );
