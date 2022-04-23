@@ -7,9 +7,9 @@ package restaurante;
 public class Opcao {
 	private String nome;
 	private float preco;
-	private float peso;
+	private int peso;
 
-	public Opcao(String nome, float preco, float peso) {
+	public Opcao(String nome, float preco, int peso) {
 		this.nome = nome;
 		this.preco = preco;
 		this.peso = peso;
@@ -35,7 +35,7 @@ public class Opcao {
 		return peso;
 	}
 
-	public void setPeso(float peso) {
+	public void setPeso(int peso) {
 		this.peso = peso;
 	}
 	
