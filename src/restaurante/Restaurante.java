@@ -23,7 +23,6 @@ public class Restaurante {
 		pratos = new ArrayList<Prato>();
 	}
 
-
 	/** indica se um dado prato pertence a este restaurante
 	 * @param p o prato a verificar
 	 * @return true, se o prato faz parte da lista do restaurante

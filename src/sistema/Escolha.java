@@ -21,7 +21,7 @@ public class Escolha {
 		return prato;
 	}
 
-	public ArrayList<Opcao> getEscolhas () {
+	public ArrayList<Opcao> getOpcoes () {
 		return opcoes;
 	}
 	
@@ -30,7 +30,11 @@ public class Escolha {
 	 * @return o peso total da escolha
 	 */
 	public int getPeso() {
-		return 0;
+		int peso = prato.getPeso();
+		for (Opcao o : opcoes){
+			peso += o.getPeso();
+		}
+		return peso;
 	}
 	
 	/** Retorna o preço total da escolha, ou seja,
@@ -38,6 +42,10 @@ public class Escolha {
 	 * @return o preço total da escolha
 	 */
 	public float getPreco( ) {
-		return 0;
+		float preco = prato.getPreco();
+		for (Opcao o : opcoes){
+			preco += o.getPreco();
+		}
+		return preco;
 	}
 }

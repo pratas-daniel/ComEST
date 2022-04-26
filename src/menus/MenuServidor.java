@@ -17,7 +17,7 @@ import sistema.Pedido;
  */
 public class MenuServidor {
 	
-	private SConsola consola = new SConsola("Menu do TESTCovid", 30, 30, 500, 600);
+	private SConsola consola = new SConsola("Menu do ComEST", 30, 30, 500, 600);
 	private ComEST server;
 
 	/** Cria a interface para o menu principal
@@ -74,8 +74,8 @@ public class MenuServidor {
 		for( Pedido p : pedidos ) {
 			String codigo = p.getId();
 			String nomeRest = p.getRestaurante().getNome();
-			int peso = p.getPesoTotal();
-			float preco = p.getPrecoTotal();
+			int peso = p.getPeso();
+			float preco = p.getPreco();
 			float taxa = 0;
 			if (peso > 0 && peso < 1500)
 				taxa = 2.5f;

@@ -13,16 +13,12 @@ public class Pedido {
 	private String id;
 	private Restaurante restaurante;
 	private ArrayList<Escolha> escolhas;
-	private int pesoTotal;
-	private float precoTotal;
 
 
 	public Pedido(String id, Restaurante restaurante) {
 		this.id = id;
 		this.restaurante = restaurante;
 		this.escolhas = new ArrayList<Escolha>();
-		pesoTotal = 0;
-		precoTotal = 0;
 	}
 
 	public String getId() {
@@ -39,18 +35,24 @@ public class Pedido {
 		return escolhas;
 	}
 
-	public int getPesoTotal() {
-		return pesoTotal;
+	public int getPeso() {
+		int peso = 0;
+		for (Escolha e : escolhas){
+			peso += e.getPeso();
+		}
+		return peso;
 	}
 
-	public float getPrecoTotal() {
-		return precoTotal;
+	public float getPreco() {
+		float preco = 0;
+		for (Escolha e : escolhas){
+			preco += e.getPreco();
+		}
+		return preco;
 	}
 
 	public void addEscolha (Escolha e) {
 		escolhas.add(e);
-		pesoTotal += e.getPeso();
-		precoTotal += e.getPreco();
 	}
 
 
