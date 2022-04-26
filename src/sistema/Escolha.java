@@ -37,6 +37,14 @@ public class Escolha {
 		return peso;
 	}
 	
+	public void addOpcao(Opcao o) {
+		opcoes.add(o);
+	}
+	
+	public void removeOpcao(Opcao o) {
+		opcoes.remove(o);
+	}
+	
 	/** Retorna o preço total da escolha, ou seja,
 	 * o preço do prato mais o preço de cada uma das opções selecionadas.
 	 * @return o preço total da escolha

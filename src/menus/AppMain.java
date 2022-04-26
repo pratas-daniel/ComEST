@@ -1,6 +1,5 @@
 package menus;
 
-import java.util.ArrayList;
 import restaurante.*;
 import sistema.ComEST;
 

@@ -21,7 +21,7 @@ public class Prato {
 		this.descricao = descricao;
 		this.preco = preco;
 		this.peso = peso;
-		opcoes = new ArrayList<Opcao>();;
+		opcoes = new ArrayList<Opcao>();
 	}
 
 	/** Indica se a opção indicada é válida para este prato
@@ -29,7 +29,12 @@ public class Prato {
 	 * @return true, se a opção é válida para o prato.
 	 */
 	public boolean temOpcao( Opcao o ) {
-		return true;
+		for (Opcao op : opcoes) {
+			if (op == o) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public String getNome() {
@@ -58,6 +63,10 @@ public class Prato {
 
 	public int getPeso() {
 		return peso;
+	}
+	
+	public void setOpcoes(ArrayList<Opcao> opcoes) {
+		this.opcoes = opcoes;
 	}
 
 	public void setPeso(int peso) {

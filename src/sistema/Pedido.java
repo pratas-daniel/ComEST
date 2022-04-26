@@ -16,23 +16,35 @@ public class Pedido {
 	private ArrayList<Escolha> escolhas;
 
 
-	public Pedido(String id, Restaurante restaurante) {
-		this.id = id;
+	public Pedido(Restaurante restaurante) {
 		this.restaurante = restaurante;
-		this.escolhas = new ArrayList<Escolha>();
 		taxa = 0;
 	}
 
 	public String getId() {
 		return id;
 	}
+	
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public float getTaxa() {
 		return taxa;
 	}
 
-	public void setTaxa(float taxa) {
-		this.taxa = taxa;
+	public void setTaxa(int peso) {
+		if (peso <= 1500)
+			taxa = 2.5f;
+		else if (peso <= 3000)
+			taxa = 4.5f;
+		else if (peso <= 4000)
+			taxa = 5.0f;
+		else {
+			int taxaExtra = peso / 1000 - 4;
+			taxa = 6.0f + taxaExtra;
+		}
+			
 	}
 
 	public Restaurante getRestaurante() {
@@ -46,21 +58,28 @@ public class Pedido {
 
 	public int getPeso() {
 		int peso = 0;
-		for (Escolha e : escolhas){
-			peso += e.getPeso();
+		if (escolhas != null) {
+			for (Escolha e : escolhas){
+				peso += e.getPeso();
+			}
 		}
 		return peso;
 	}
 
 	public float getPreco() {
 		float preco = 0;
-		for (Escolha e : escolhas){
-			preco += e.getPreco();
+		if (escolhas != null) {
+			for (Escolha e : escolhas){
+				preco += e.getPreco();
+			}
 		}
 		return preco;
+		
 	}
 
 	public void addEscolha (Escolha e) {
+		if (escolhas == null)
+			escolhas = new ArrayList<Escolha>();
 		escolhas.add(e);
 	}
 

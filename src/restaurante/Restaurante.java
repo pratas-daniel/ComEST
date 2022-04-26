@@ -28,7 +28,12 @@ public class Restaurante {
 	 * @return true, se o prato faz parte da lista do restaurante
 	 */
 	public boolean temPrato( Prato p ) {
-		return true;
+		for (Prato prato : pratos) {
+			if (prato == p) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public void addPrato(Prato p) {
@@ -58,4 +63,13 @@ public class Restaurante {
 	public ArrayList<Prato> getPratos() {
 		return pratos;
 	}
+
+	public ArrayList<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void addPedido(Pedido p) {
+		pedidos.add(p);
+	}
+	
 }

@@ -1,7 +1,6 @@
 package menus;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import consola.SConsola;
 import restaurante.*;
@@ -59,44 +58,38 @@ public class MenuPedidos {
 		Restaurante r = escolherRestaurante();
 		if( r == null )
 			return;
-
+		Pedido p = new Pedido(r);
 		int pidx = 0;
 		do {
 			consola.clear();
 			String nomeRest = r.getNome();
 			consola.println( nomeRest + "\n\nPratos já pedidos" );
-			
-			// TODO passar aqui a lista de escolhas 
-			printEscolhas( null );
-			
-			// TODO apresentar a informação pedida
-			float preco = 2.5f;
-			float taxaEntrega = 2.5f;
-			int pesoTotal = 1000;
-			float precoTotal = 5.0f;
+			printEscolhas( p.getEscolhas() );
+			float preco = p.getPreco();
+			float taxaEntrega = p.getTaxa();
+			int pesoTotal = p.getPeso();
+			float precoTotal = p.getPreco() + p.getTaxa();
 			consola.println( String.format("\nCusto pedido:  %6.2f€", preco ) );
 			consola.println( String.format(  "Custo entrega: %6.2f€  por  %4dg", taxaEntrega, pesoTotal ) );
 			consola.println( String.format(  "Total:         %6.2f€\n", precoTotal ) ); 
 			consola.println( "Escolha um prato\n0 para confirmar o pedido\n-1 para cancelar\n" + 
 					         "Pratos disponibilizados");
 			
-			// TODO listar os pratos disponibilizados pelos restaurante
-			printPratos( null );
+			printPratos(r.getPratos());
 			consola.print("\nPrato: ");
-			pidx = consola.readInt() ;
-			// TODO se o índice escolhido for válido, apresentar o prato
-			if( Math.abs(2 ) == 2 ) {
-				// TODO se o índice é válido, apresentar o prato e respetivas opções 
-				escolherOpcoesPrato( null, null );
+			pidx = consola.readInt();
+			if(pidx > 0 && pidx <= r.getPratos().size()) { 
+				escolherOpcoesPrato( p, r.getPratos().get(pidx - 1) );
 			}
 		} while( pidx != 0 && pidx != -1 );
 
 		consola.clear();
 		if( pidx == 0 ) {
-			// TODO ver se o pedido tem pratos incluídos (substituir a condição, claro)
-			if( Math.abs( 2 ) == 2 ) {
-				// TODO adicionar o pedido ao sistema e ver o código
-				String codigo = "Um código gerado pelo sistema";
+			if( p.getEscolhas() != null ) {
+				String codigo = GeradorCodigos.gerarCodigo(6);
+				p.setId(codigo);
+				server.addPedido(p);
+				r.addPedido(p);
 				consola.println( "O seu pedido foi aceite!\n\nPara saber informações use o código " + codigo );
 			} else {
 				consola.println( "O seu pedido não for confirmado porque não tinha nenhum prato escolhido!" );
@@ -111,7 +104,7 @@ public class MenuPedidos {
 	 * @param escolhas a lista de escolhas a apresentar
 	 */
 	private void printEscolhas(ArrayList<Escolha> escolhas) {
-		if( escolhas.size() == 0 ) {
+		if( escolhas == null ) {
 			consola.println( "<Ainda sem pratos no pedido>" );
 			return;
 		}
@@ -120,8 +113,8 @@ public class MenuPedidos {
 			float precoPrato = e.getPrato().getPreco();
 			consola.println( String.format("%-40s %6.2f€", nomePrato, precoPrato ) );
 			for (Opcao o : e.getOpcoes()) {
-				String nomeOpcao = "nome da opção";
-				float custoOpcao = 0.3f;
+				String nomeOpcao = o.getNome();
+				float custoOpcao = o.getPreco();
 				consola.println( String.format("     %-35s %6.2f€", nomeOpcao, custoOpcao ) );
 			}
 		}
@@ -175,12 +168,9 @@ public class MenuPedidos {
 	 * @param prato o prato a ser observado e eventualemente escolhido
 	 */
 	private void escolherOpcoesPrato(Pedido pedido, Prato prato) {
-		// TODO usar este array booleano (que deve ter o mesmo tamanho da lista de opções)
-		//      para saber quais as opções que estão selecionadas
 		int numOpcoes = prato.getOpcoes().size();
 		boolean select[] = new boolean[ numOpcoes ];
 		
-		// TODO apresentar info do prato
 		String nomePrato = prato.getNome();
 		String descPrato = prato.getDescricao();
 		float precoPrato = prato.getPreco();
@@ -190,10 +180,11 @@ public class MenuPedidos {
 				           "0 para confirmar\n-1 para cancelar\n";
 
 		int oidx = 0;
+		Escolha e = new Escolha(prato);
 		do {
 			consola.clear();
 			consola.println( infoPrato );
-			float precoTotal = prato.getPreco();
+			float precoTotal = e.getPreco();
 			consola.println( String.format("Custo: %6.2f €", precoTotal ) );
 			for( int i = 0; i < numOpcoes; i++  ) {
 				consola.print( select[i]? "(o) ": "( ) " );
@@ -203,17 +194,18 @@ public class MenuPedidos {
 			}
 			consola.println( "Opção: ");
 			oidx = consola.readInt();
-			if( oidx < 1 && oidx > numOpcoes ) {
+			if( oidx > 0 && oidx <= numOpcoes ) {
 				int idx = oidx-1;
 				select[idx] = !select[idx];
 				if( select[idx] )
-					;// TODO adicionar opção à seleção
+					e.addOpcao(prato.getOpcoes().get(idx));
 				else
-					;// TODO remover opção à seleção
+					e.removeOpcao(prato.getOpcoes().get(idx));
 			}
 		} while( oidx != 0 && oidx != -1 );
 		if( oidx == 0 ) {
-			// TODO se confirmar, adicionar o rato e respetivas opções selecionadas ao pedido			
+			pedido.addEscolha(e);
+			pedido.setTaxa(pedido.getPeso());
 		}
 			
 	}
@@ -224,34 +216,28 @@ public class MenuPedidos {
 		consola.clear();
 		consola.println( "Código? " );
 		String code = consola.readLine();
-		
-		// TODO ver qual o pedido associado ao código, se algum
-		Pedido p = null;
-		if( Math.abs( 2 ) == -2 ) {
-			consola.println("Pedido inexistente!");
-			consola.readLine();
-			return;			
+		for (Pedido p : server.getPedidos()) {
+			if (p.getId().equals(code)) {
+				consola.clear();
+				String codigo = p.getId();
+				String nomeRestaurante = p.getRestaurante().getNome();
+				float precoTotal = p.getPreco();
+				consola.println( "Pedido " + codigo +
+						         "\nRestaurante:" + nomeRestaurante +
+						         "\nPreço: " + precoTotal + "€\n\n");
+				for( Escolha e : p.getEscolhas() ) {
+					String nomePrato = e.getPrato().getNome();
+					consola.println( nomePrato );
+					for( Opcao o : e.getOpcoes() ) {
+						String nomeOpcao = o.getNome();
+						consola.println("    " + nomeOpcao );
+					}
+				}
+				consola.readLine();
+				return;
+			}	
 		}
-		
-		consola.clear();
-		// TODO apresentar informação do pedido e restaurante
-		String codigo = "Código do pedido a ver";
-		String nomeRestaurante = "Nome do restaurante onde o pedido foi feito";
-		float precoTotal = 2.8f;
-		consola.println( "Pedido " + codigo +
-				         "\nRestaurante:" + nomeRestaurante +
-				         "\nPreço: " + precoTotal + "€\n\n");
-
-		// TODO apresentar sumário das escolhas do pedido
-		for( int i=0; i < 1; i++ ) {
-			String nomePrato = "Nome dum prato escolhido";
-			consola.println( nomePrato );
-			for( int k=0; k < 1; k++  ) {
-				String nomeOpcao = "Opção escolhida";
-				consola.println("    " + nomeOpcao );
-			}
-		}
-		consola.readLine();
+		consola.println("Pedido inexistente!");
+		consola.readLine();	
 	}
-
 }

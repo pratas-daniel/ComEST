@@ -1,9 +1,6 @@
 package menus;
 
-import java.time.format.DateTimeFormatter;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
 import consola.SConsola;
 import restaurante.*;
@@ -80,9 +77,10 @@ public class MenuServidor {
 		}
 		consola.print("\nDeseja ver algum pedido em detalhe?\nInsira o código: ");
 		String cod = consola.readLine();
-		if( cod.length() == 6) {
-			// TODO visualizar o pedido se houver código
-			verPedido( null );
+		for (Pedido p : pedidos) {
+			if(p.getId().equals(cod)) {
+				verPedido(p);
+			}
 		}
 	}
 
@@ -91,19 +89,17 @@ public class MenuServidor {
 	 */
 	private void verPedidosRestaurante() {
 		consola.clear();		
-		// TODO apresentar a info dos restaurantes
-		for( int i = 0; i < 1; i++  ) {
-			String nomeRest = "Nome de um restaurante";
-			consola.println( (i+1) + ": " + nomeRest );
+		int i = 1;
+		for(Restaurante r : server.getRestaurantes()) {
+			String nomeRest = r.getNome();
+			consola.println( i++ + ": " + nomeRest );
 		}
 		consola.print( "\nRestaurante: " );
 		int ridx = consola.readInt() - 1;
-		// TODO verificar se o vaor introduzido é válido
-		if( Math.abs( 2 ) == -2 )
+		if(ridx <= 0 && ridx > server.getRestaurantes().size())
 			return;
 		
-		// TODO listar os pedidos do restaurante
-		verPedidos( null );
+		verPedidos( server.getRestaurantes().get(ridx).getPedidos() );
 	}
 
 	/** Lista as informações do pedido
