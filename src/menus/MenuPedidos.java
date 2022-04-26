@@ -33,7 +33,6 @@ public class MenuPedidos {
 			String menu = "Menu de consumidor\n" +  
 					"1- Fazer pedido\n"+
 					"2- Ver pedido\n"; 
-
 			consola.clear();
 			consola.println( menu );
 			opcao = consola.readChar();
@@ -112,16 +111,20 @@ public class MenuPedidos {
 	 * @param escolhas a lista de escolhas a apresentar
 	 */
 	private void printEscolhas(ArrayList<Escolha> escolhas) {
-		if( escolhas.size() == 0 )
+		if( escolhas.size() == 0 ) {
 			consola.println( "<Ainda sem pratos no pedido>" );
-		// TODO para cada escolha imprimir
-		String nomePrato ="Nome do prato";
-		float precoPrato = 2.5f;
-		consola.println( String.format("%-40s %6.2f€", nomePrato, precoPrato ) );
-		// TODO para cada opção do prato imprimir
-		String nomeOpcao = "nome da opção";
-		float custoOpcao = 0.3f;
-		consola.println( String.format("     %-35s %6.2f€", nomeOpcao, custoOpcao ) );
+			return;
+		}
+		for (Escolha e : escolhas) {
+			String nomePrato = e.getPrato().getNome();
+			float precoPrato = e.getPrato().getPreco();
+			consola.println( String.format("%-40s %6.2f€", nomePrato, precoPrato ) );
+			for (Opcao o : e.getOpcoes()) {
+				String nomeOpcao = "nome da opção";
+				float custoOpcao = 0.3f;
+				consola.println( String.format("     %-35s %6.2f€", nomeOpcao, custoOpcao ) );
+			}
+		}
 	}
 	
 	/** apresenta, na consola, uma lista de pratos

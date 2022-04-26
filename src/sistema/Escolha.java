@@ -12,9 +12,9 @@ public class Escolha {
 	private Prato prato;
 	private ArrayList<Opcao> opcoes;
 	
-	public Escolha(Prato prato, ArrayList<Opcao> opcoes) {
+	public Escolha(Prato prato) {
 		this.prato = prato;
-		this.opcoes = opcoes;
+		opcoes = new ArrayList<Opcao>();
 	}
 
 	public Prato getPrato() {

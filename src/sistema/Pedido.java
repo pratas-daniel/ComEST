@@ -11,6 +11,7 @@ import restaurante.*;
  */
 public class Pedido {
 	private String id;
+	private float taxa;
 	private Restaurante restaurante;
 	private ArrayList<Escolha> escolhas;
 
@@ -19,12 +20,20 @@ public class Pedido {
 		this.id = id;
 		this.restaurante = restaurante;
 		this.escolhas = new ArrayList<Escolha>();
+		taxa = 0;
 	}
 
 	public String getId() {
 		return id;
 	}
 
+	public float getTaxa() {
+		return taxa;
+	}
+
+	public void setTaxa(float taxa) {
+		this.taxa = taxa;
+	}
 
 	public Restaurante getRestaurante() {
 		return restaurante;
