@@ -6,11 +6,8 @@ import java.util.Collections;
 import java.util.List;
 
 import consola.SConsola;
-import restaurante.Opcao;
-import restaurante.Restaurante;
-import sistema.ComEST;
-import sistema.Escolha;
-import sistema.Pedido;
+import restaurante.*;
+import sistema.*;
 
 /**
  * Classe que trata dos menus do servidor
@@ -19,7 +16,6 @@ public class MenuServidor {
 	
 	private SConsola consola = new SConsola("Menu do ComEST", 30, 30, 500, 600);
 	private ComEST server;
-	float taxa = 0;
 
 	/** Cria a interface para o menu principal
 	 * @param s o servidor para o qual se está a cria a interface
@@ -77,17 +73,7 @@ public class MenuServidor {
 			String nomeRest = p.getRestaurante().getNome();
 			int peso = p.getPeso();
 			float preco = p.getPreco();
-			if (peso > 0 && peso < 1500)
-				taxa = 2.5f;
-			else if (peso < 3000)
-				taxa = 4.5f;
-			else if (peso < 4000)
-				taxa = 5.0f;
-			else if (peso > 4000) {
-				taxa = 6.0f;
-				int dif = peso/1000 - 4;
-				taxa += dif;
-			}
+			float taxa = p.getTaxa();
 			consola.println( String.format("%6s - %-30s  %4dg  %6.2fe  %6.2f€",
 					codigo, nomeRest,  peso,
 					preco, taxa) );
@@ -131,27 +117,26 @@ public class MenuServidor {
 		}
 		
 		consola.clear();
-		// TODO apresentar as infos corretas
 		String codigo = p.getId();
 		String nomeRest= p.getRestaurante().getNome();
-		float precoTotal = p.getPreco() + taxa;
+		float precoTotal = p.getPreco() + p.getTaxa();
 		float precoPratos = p.getPreco();
-		float custoEntrega = taxa;
+		float custoEntrega = p.getTaxa();
 		int peso = p.getPeso();
 		consola.println( "Pedido " + codigo + "\nRestaurante:" + nomeRest +"\n");
 		consola.println( String.format( "Preço        : %6.2f€", precoTotal ) ); 
 		consola.println( String.format( "Preço  pratos: %6.2f€", precoPratos ) );  
 		consola.println( String.format( "Custo entrega: %6.2f€  (%4dg)", custoEntrega, peso ) );
 		
-		for( int i = 0; i < 1; i++ ) {
-			String nomePrato = p.getRestaurante().getNome();
-			float precoPrato = p.getPreco();
-			int pesoPrato = p.getPeso();
-			consola.println( String.format( "%-40s  %6.2f€  %4dg", nomePrato, precoPrato, peso ));
-			for( int k=0; k < 1; k++ ) {
-				String nomeOpcao = "Opção do prato";
-				float custoOpcao = 0.3f;
-				int pesoOpcao = 200;
+		for( Escolha e : p.getEscolhas() ) {
+			String nomePrato = e.getPrato().getNome();
+			float precoPrato = e.getPrato().getPreco();
+			int pesoPrato = e.getPrato().getPeso();
+			consola.println( String.format( "%-40s  %6.2f€  %4dg", nomePrato, precoPrato, pesoPrato ));
+			for( Opcao o : e.getOpcoes() ) {
+				String nomeOpcao = o.getNome();
+				float custoOpcao = o.getPreco();
+				int pesoOpcao = o.getPeso();
 				consola.println( String.format("     %-35s  %6.2f€  %4dg", nomeOpcao, custoOpcao, pesoOpcao ) );
 			}
 		}
