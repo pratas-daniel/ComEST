@@ -19,6 +19,7 @@ public class MenuServidor {
 	
 	private SConsola consola = new SConsola("Menu do ComEST", 30, 30, 500, 600);
 	private ComEST server;
+	float taxa = 0;
 
 	/** Cria a interface para o menu principal
 	 * @param s o servidor para o qual se está a cria a interface
@@ -76,14 +77,17 @@ public class MenuServidor {
 			String nomeRest = p.getRestaurante().getNome();
 			int peso = p.getPeso();
 			float preco = p.getPreco();
-			float taxa = 0;
 			if (peso > 0 && peso < 1500)
 				taxa = 2.5f;
 			else if (peso < 3000)
 				taxa = 4.5f;
 			else if (peso < 4000)
 				taxa = 5.0f;
-			// TODO acabar if
+			else if (peso > 4000) {
+				taxa = 6.0f;
+				int dif = peso/1000 - 4;
+				taxa += dif;
+			}
 			consola.println( String.format("%6s - %-30s  %4dg  %6.2fe  %6.2f€",
 					codigo, nomeRest,  peso,
 					preco, taxa) );
@@ -128,21 +132,21 @@ public class MenuServidor {
 		
 		consola.clear();
 		// TODO apresentar as infos corretas
-		String codigo = "codeXX";
-		String nomeRest= "Nome de um restaurante";
-		float precoTotal = 5.1f;
-		float precoPratos = 2.6f;
-		float custoEntrega = 2.5f;
-		int peso = 1000;
+		String codigo = p.getId();
+		String nomeRest= p.getRestaurante().getNome();
+		float precoTotal = p.getPreco() + taxa;
+		float precoPratos = p.getPreco();
+		float custoEntrega = taxa;
+		int peso = p.getPeso();
 		consola.println( "Pedido " + codigo + "\nRestaurante:" + nomeRest +"\n");
 		consola.println( String.format( "Preço        : %6.2f€", precoTotal ) ); 
 		consola.println( String.format( "Preço  pratos: %6.2f€", precoPratos ) );  
 		consola.println( String.format( "Custo entrega: %6.2f€  (%4dg)", custoEntrega, peso ) );
 		
 		for( int i = 0; i < 1; i++ ) {
-			String nomePrato = "Nome do prato";
-			float precoPrato = 2.5f;
-			int pesoPrato = 800;
+			String nomePrato = p.getRestaurante().getNome();
+			float precoPrato = p.getPreco();
+			int pesoPrato = p.getPeso();
 			consola.println( String.format( "%-40s  %6.2f€  %4dg", nomePrato, precoPrato, peso ));
 			for( int k=0; k < 1; k++ ) {
 				String nomeOpcao = "Opção do prato";
