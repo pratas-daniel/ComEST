@@ -86,6 +86,7 @@ public class Prato {
 	public void addOpcao (Opcao o) {
 		opcoes.add(o);
 	}
+	
 	public List<Opcao> getOpcoes() {
 		return Collections.unmodifiableList(opcoes);
 	}
