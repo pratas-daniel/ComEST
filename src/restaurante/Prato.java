@@ -19,11 +19,11 @@ public class Prato {
 	private List<Opcao> opcoes;
 	
 	public Prato(String nome, String descricao, float preco, int peso) {
-		this.nome = nome;
-		this.descricao = descricao;
+		setNome(nome);
+		setDescricao(descricao);
 		setPreco(preco);
 		setPeso(peso);
-		opcoes = new ArrayList<Opcao>();
+		setOpcoes(new ArrayList<Opcao>());
 	}
 
 	/** Indica se a opção indicada é válida para este prato

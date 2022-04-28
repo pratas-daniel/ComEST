@@ -18,9 +18,9 @@ public class Pedido {
 	private List<Escolha> escolhas;
 
 	public Pedido(Restaurante restaurante) {
-		this.restaurante = restaurante;
+		setRestaurante(restaurante);
 		taxa = 0;
-		escolhas = new ArrayList<Escolha>();
+		setEscolhas(new ArrayList<Escolha>());
 	}
 
 	public String getId() {
@@ -29,6 +29,14 @@ public class Pedido {
 	
 	public void setId(String id) {
 		this.id = id;
+	}
+	
+	public void setRestaurante(Restaurante restaurante) {
+		this.restaurante = restaurante;
+	}
+	
+	public void setEscolhas(List<Escolha> escolhas) {
+		this.escolhas = escolhas;
 	}
 
 	public float getTaxa() {

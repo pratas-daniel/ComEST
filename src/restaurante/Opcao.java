@@ -10,9 +10,9 @@ public class Opcao {
 	private int peso;
 
 	public Opcao(String nome, float preco, int peso) {
-		this.nome = nome;
-		this.preco = preco;
-		this.peso = peso;
+		setNome(nome);
+		setPreco(preco);
+		setPeso(peso);
 	}
 
 	public String getNome() {

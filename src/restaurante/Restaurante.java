@@ -19,10 +19,10 @@ public class Restaurante {
 	private List<Pedido> pedidos;
 	
 	public Restaurante(String nome, String descricao) {
-		this.nome = nome;
-		this.descricao = descricao;
-		pedidos = new ArrayList<Pedido>();
-		pratos = new ArrayList<Prato>();
+		setNome(nome);
+		setDescricao(descricao);
+		setPedidos(new ArrayList<Pedido>());
+		setPratos(new ArrayList<Prato>());
 	}
 
 	/** indica se um dado prato pertence a este restaurante
@@ -58,6 +58,14 @@ public class Restaurante {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	
+	public void setPratos(List<Prato> pratos) {
+		this.pratos = pratos;
+	}
+	
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 	
 	public List<Prato> getPratos() {
