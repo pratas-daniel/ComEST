@@ -1,6 +1,8 @@
 package sistema;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import restaurante.*;
 
@@ -13,12 +15,13 @@ public class Pedido {
 	private String id;
 	private float taxa;
 	private Restaurante restaurante;
-	private ArrayList<Escolha> escolhas;
+	private List<Escolha> escolhas;
 
 
 	public Pedido(Restaurante restaurante) {
 		this.restaurante = restaurante;
 		taxa = 0;
+		escolhas = new ArrayList<Escolha>();
 	}
 
 	public String getId() {
@@ -52,8 +55,8 @@ public class Pedido {
 	}
 
 
-	public ArrayList<Escolha> getEscolhas() {
-		return escolhas;
+	public List<Escolha> getEscolhas() {
+		return Collections.unmodifiableList(escolhas);
 	}
 
 	public int getPeso() {
@@ -78,9 +81,8 @@ public class Pedido {
 	}
 
 	public void addEscolha (Escolha e) {
-		if (escolhas == null)
-			escolhas = new ArrayList<Escolha>();
-		escolhas.add(e);
+		if (restaurante.temPrato(e.getPrato()))
+			escolhas.add(e);
 	}
 
 

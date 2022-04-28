@@ -1,6 +1,8 @@
 package restaurante;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 
 /** Classe que representa um prato do sistema.
@@ -14,13 +16,13 @@ public class Prato {
 	private String descricao;
 	private float preco;
 	private int peso;
-	private ArrayList<Opcao> opcoes = new ArrayList<Opcao>();
+	private List<Opcao> opcoes;
 	
 	public Prato(String nome, String descricao, float preco, int peso) {
 		this.nome = nome;
 		this.descricao = descricao;
-		this.preco = preco;
-		this.peso = peso;
+		setPreco(preco);
+		setPeso(peso);
 		opcoes = new ArrayList<Opcao>();
 	}
 
@@ -29,12 +31,10 @@ public class Prato {
 	 * @return true, se a opção é válida para o prato.
 	 */
 	public boolean temOpcao( Opcao o ) {
-		for (Opcao op : opcoes) {
-			if (op == o) {
-				return true;
-			}
-		}
-		return false;
+		if (opcoes.contains(o))
+			return true;
+		else
+			return false;
 	}
 
 	public String getNome() {
@@ -58,7 +58,12 @@ public class Prato {
 	}
 
 	public void setPreco(float preco) {
-		this.preco = Math.abs(preco);
+		// Se for menor que 0 fica a 0
+		if (preco < 0)
+			this.preco = 0;
+		// senão fica com o valor do parametro
+		else
+			this.preco = preco;
 	}
 
 	public int getPeso() {
@@ -70,12 +75,18 @@ public class Prato {
 	}
 
 	public void setPeso(int peso) {
-		this.peso = Math.abs(peso);
+		// Se for menor que 0 fica a 0
+		if (peso < 0)
+			this.peso = 0;
+		else
+		// Senão fica com o valor do parametro
+			this.peso = peso;
 	}
+	
 	public void addOpcao (Opcao o) {
 		opcoes.add(o);
 	}
-	public ArrayList<Opcao> getOpcoes() {
-		return opcoes;
+	public List<Opcao> getOpcoes() {
+		return Collections.unmodifiableList(opcoes);
 	}
 }

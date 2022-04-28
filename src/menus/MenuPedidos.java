@@ -1,7 +1,6 @@
 package menus;
 
-import java.util.ArrayList;
-
+import java.util.List;
 import consola.SConsola;
 import restaurante.*;
 import sistema.*;
@@ -103,8 +102,8 @@ public class MenuPedidos {
 	/** apresenta, na consola, uma lista de escolhas
 	 * @param escolhas a lista de escolhas a apresentar
 	 */
-	private void printEscolhas(ArrayList<Escolha> escolhas) {
-		if( escolhas == null ) {
+	private void printEscolhas(List<Escolha> escolhas) {
+		if( escolhas.isEmpty() ) {
 			consola.println( "<Ainda sem pratos no pedido>" );
 			return;
 		}
@@ -123,7 +122,7 @@ public class MenuPedidos {
 	/** apresenta, na consola, uma lista de pratos
 	 * @param pratos a lista de pratos a apresentar
 	 */
-	private void printPratos(ArrayList<Prato> pratos) {
+	private void printPratos(List<Prato> pratos) {
 		if( pratos.size() == 0 )
 			consola.println( "<Sem pratos>" );
 		for( int i = 0; i < pratos.size(); i++ ) {
@@ -138,7 +137,7 @@ public class MenuPedidos {
 	 * @return o restaurante selecionado ou null, caso não haja seleção
 	 */
 	private Restaurante escolherRestaurante() {
-		ArrayList<Restaurante> restaurantes = server.getRestaurantes(); 
+		List<Restaurante> restaurantes = server.getRestaurantes(); 
 		for( int i = 0; i < restaurantes.size(); i++  ) {
 			String nomeRest = restaurantes.get(i).getNome();
 			consola.println( (i+1) + ": " + nomeRest );

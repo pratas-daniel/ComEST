@@ -1,6 +1,8 @@
 package sistema;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import restaurante.*;
 
@@ -10,7 +12,7 @@ import restaurante.*;
  */
 public class Escolha {
 	private Prato prato;
-	private ArrayList<Opcao> opcoes;
+	private List<Opcao> opcoes;
 	
 	public Escolha(Prato prato) {
 		this.prato = prato;
@@ -21,8 +23,8 @@ public class Escolha {
 		return prato;
 	}
 
-	public ArrayList<Opcao> getOpcoes () {
-		return opcoes;
+	public List<Opcao> getOpcoes () {
+		return Collections.unmodifiableList(opcoes);
 	}
 	
 	/** Retorna o peso total da escolha, ou seja,
@@ -38,7 +40,8 @@ public class Escolha {
 	}
 	
 	public void addOpcao(Opcao o) {
-		opcoes.add(o);
+		if (prato.temOpcao(o))
+			opcoes.add(o);
 	}
 	
 	public void removeOpcao(Opcao o) {

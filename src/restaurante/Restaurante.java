@@ -1,6 +1,8 @@
 package restaurante;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import sistema.Pedido;
 
@@ -13,8 +15,8 @@ import sistema.Pedido;
 public class Restaurante {
 	private String nome;
 	private String descricao;
-	private ArrayList<Prato> pratos;
-	private ArrayList<Pedido> pedidos;
+	private List<Prato> pratos;
+	private List<Pedido> pedidos;
 	
 	public Restaurante(String nome, String descricao) {
 		this.nome = nome;
@@ -28,12 +30,10 @@ public class Restaurante {
 	 * @return true, se o prato faz parte da lista do restaurante
 	 */
 	public boolean temPrato( Prato p ) {
-		for (Prato prato : pratos) {
-			if (prato == p) {
-				return true;
-			}
-		}
-		return false;
+		if (pratos.contains(p))
+			return true;
+		else
+			return false;
 	}
 	
 	public void addPrato(Prato p) {
@@ -60,12 +60,12 @@ public class Restaurante {
 		this.descricao = descricao;
 	}
 	
-	public ArrayList<Prato> getPratos() {
-		return pratos;
+	public List<Prato> getPratos() {
+		return Collections.unmodifiableList(pratos);
 	}
 
-	public ArrayList<Pedido> getPedidos() {
-		return pedidos;
+	public List<Pedido> getPedidos() {
+		return Collections.unmodifiableList(pedidos);
 	}
 
 	public void addPedido(Pedido p) {

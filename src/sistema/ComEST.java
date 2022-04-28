@@ -1,7 +1,8 @@
 package sistema;
 
 import java.util.ArrayList;
-
+import java.util.Collections;
+import java.util.List;
 import restaurante.*;
 
 /** Classe que representa todo o sistema
@@ -9,20 +10,20 @@ import restaurante.*;
  * Deve ser a responsável por atribuir o código a um pedido, quando este é adicionado ao sistema 
  */
 public class ComEST {
-	 private ArrayList<Restaurante> restaurantes;
-	 private ArrayList<Pedido> pedidos;
+	 private List<Restaurante> restaurantes;
+	 private List<Pedido> pedidos;
 	 
 	 public ComEST() {
 		 restaurantes = new ArrayList<Restaurante>();
 		 pedidos = new ArrayList<Pedido>();
 	 }
 	 
-	 public ArrayList<Restaurante> getRestaurantes() {
-		return restaurantes;
+	 public List<Restaurante> getRestaurantes() {
+		return Collections.unmodifiableList(restaurantes);
 	 }
 
-	 public ArrayList<Pedido> getPedidos() {
-		return pedidos;
+	 public List<Pedido> getPedidos() {
+		 return Collections.unmodifiableList(pedidos);
 	 }
 	 
 	 public void addRestaurante(Restaurante r) {
