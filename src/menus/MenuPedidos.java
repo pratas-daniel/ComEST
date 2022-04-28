@@ -63,7 +63,10 @@ public class MenuPedidos {
 			consola.clear();
 			String nomeRest = r.getNome();
 			consola.println( nomeRest + "\n\nPratos já pedidos" );
-			printEscolhas( p.getEscolhas() );
+			if(!p.estaVazio())
+				printEscolhas( p.getEscolhas() );
+			else
+				consola.println( "<Ainda sem pratos no pedido>" );
 			float preco = p.getPreco();
 			float taxaEntrega = p.getTaxa();
 			int pesoTotal = p.getPeso();
@@ -103,10 +106,6 @@ public class MenuPedidos {
 	 * @param escolhas a lista de escolhas a apresentar
 	 */
 	private void printEscolhas(List<Escolha> escolhas) {
-		if( escolhas.isEmpty() ) {
-			consola.println( "<Ainda sem pratos no pedido>" );
-			return;
-		}
 		for (Escolha e : escolhas) {
 			String nomePrato = e.getPrato().getNome();
 			float precoPrato = e.getPrato().getPreco();
