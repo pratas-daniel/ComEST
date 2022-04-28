@@ -10,27 +10,35 @@ import restaurante.*;
  * Deve ser a responsável por atribuir o código a um pedido, quando este é adicionado ao sistema 
  */
 public class ComEST {
-	 private List<Restaurante> restaurantes;
-	 private List<Pedido> pedidos;
+	private List<Restaurante> restaurantes;
+	private List<Pedido> pedidos;
+	
+	public ComEST() {
+		setRestaurantes(new ArrayList<Restaurante>());
+		setPedidos(new ArrayList<Pedido>());
+	}
 	 
-	 public ComEST() {
-		 restaurantes = new ArrayList<Restaurante>();
-		 pedidos = new ArrayList<Pedido>();
-	 }
-	 
-	 public List<Restaurante> getRestaurantes() {
+	public List<Restaurante> getRestaurantes() {
 		return Collections.unmodifiableList(restaurantes);
-	 }
+	}
 
-	 public List<Pedido> getPedidos() {
-		 return Collections.unmodifiableList(pedidos);
-	 }
+	public List<Pedido> getPedidos() {
+		return Collections.unmodifiableList(pedidos);
+	}
 	 
-	 public void addRestaurante(Restaurante r) {
-		 restaurantes.add(r);
-	 }
+	public void setRestaurantes(List<Restaurante> restaurantes) {
+		this.restaurantes = restaurantes;
+	}
+	
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
 	 
-	 public void addPedido(Pedido p) {
-		 pedidos.add(p);
-	 }
+	public void addRestaurante(Restaurante r) {
+		restaurantes.add(r);
+	}
+	 
+	public void addPedido(Pedido p) {
+		pedidos.add(p);
+	}
 }

@@ -15,8 +15,8 @@ public class Escolha {
 	private List<Opcao> opcoes;
 	
 	public Escolha(Prato prato) {
-		this.prato = prato;
-		opcoes = new ArrayList<Opcao>();
+		setPrato(prato);
+		setOpcoes(new ArrayList<Opcao>());
 	}
 
 	public Prato getPrato() {
@@ -58,5 +58,13 @@ public class Escolha {
 			preco += o.getPreco();
 		}
 		return preco;
+	}
+	
+	public void setPrato(Prato prato) {
+		this.prato = prato;
+	}
+	
+	public void setOpcoes(List<Opcao> opcoes) {
+		this.opcoes = opcoes;
 	}
 }
